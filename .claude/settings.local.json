@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run compile:*)",
+      "Bash(node -e:*)",
+      "Bash(code --version:*)",
+      "Bash(cursor --version:*)",
+      "Bash(xcrun devicectl device process:*)",
+      "Bash(xcrun devicectl:*)"
+    ]
+  }
+}

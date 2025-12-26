@@ -1,0 +1,102 @@
+{
+  "name": "simbuild",
+  "displayName": "SimBuild",
+  "description": "One-click build and run for iOS Simulator inside Cursor.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:**/*.xcodeproj",
+    "workspaceContains:**/*.xcworkspace"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "simbuild.build",
+        "title": "SimBuild: Build",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "simbuild.run",
+        "title": "SimBuild: Build & Run",
+        "icon": "$(play)"
+      },
+      {
+        "command": "simbuild.selectSimulator",
+        "title": "SimBuild: Select Simulator"
+      },
+      {
+        "command": "simbuild.selectScheme",
+        "title": "SimBuild: Select Scheme"
+      },
+      {
+        "command": "simbuild.clean",
+        "title": "SimBuild: Clean Build"
+      },
+      {
+        "command": "simbuild.stop",
+        "title": "SimBuild: Stop Build",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "simbuild.refresh",
+        "title": "SimBuild: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "simbuild.startLog",
+        "title": "SimBuild: Start Log",
+        "icon": "$(output)"
+      },
+      {
+        "command": "simbuild.stopLog",
+        "title": "SimBuild: Stop Log",
+        "icon": "$(debug-stop)"
+      }
+    ],
+    "configuration": {
+      "title": "SimBuild",
+      "properties": {
+        "simbuild.derivedDataPath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom derived data path. Leave empty to use default."
+        },
+        "simbuild.showBuildTime": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show build time in status bar after build completes."
+        },
+        "simbuild.autoSelectScheme": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically select scheme if only one is available."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.107.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
