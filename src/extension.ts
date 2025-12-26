@@ -279,13 +279,13 @@ async function runBuild(runAfterBuild: boolean, clean = false) {
     const scheme = statusBar.currentScheme;
     if (!scheme) {
         await selectScheme();
-        if (!statusBar.currentScheme) return;
+        if (!statusBar.currentScheme) {return;}
     }
 
     const device = statusBar.currentDevice;
     if (!device) {
         await selectDevice();
-        if (!statusBar.currentDevice) return;
+        if (!statusBar.currentDevice) {return;}
     }
 
     // Get config
@@ -333,7 +333,7 @@ async function runBuild(runAfterBuild: boolean, clean = false) {
 
 async function runApp(appPath: string) {
     const device = statusBar.currentDevice;
-    if (!device) return;
+    if (!device) {return;}
 
     try {
         // Boot simulator if needed
