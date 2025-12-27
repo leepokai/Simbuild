@@ -1,71 +1,59 @@
-# simbuild README
+# SimBuild - iOS Simulator Build Extension
 
-This is the README for your extension "simbuild". After writing up a brief description, we recommend including the following sections.
+SimBuild is a VS Code extension that builds your iOS app and installs it to the simulator with one click—no need to open Xcode.
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## What it does
+- Auto-detects `.xcodeproj` or `.xcworkspace` in the workspace
+- Lets you pick an iOS simulator to target
+- Lets you pick an Xcode scheme
+- Builds for the simulator using `xcodebuild`
+- Installs and launches the built app on the chosen simulator
+- Shows build output in a dedicated panel
 
 ## Requirements
+- macOS with Xcode installed (includes the iOS Simulator)
+- Xcode command line tools available (`xcode-select -p` should resolve)
+- `xcrun simctl` available (bundled with Xcode)
+- Node.js 18+ (for local development/building the extension)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Install
+- From VS Code: install from a packaged VSIX, or
+- Build locally: clone the repo, then run `npm install` and `npm run compile`
 
-## Extension Settings
+## Quickstart
+1) Open the iOS project folder in VS Code (must contain a `.xcodeproj` or `.xcworkspace`).
+2) Run the command palette (`Cmd/Ctrl+Shift+P`) and choose one:
+   - `SimBuild: Build`
+   - `SimBuild: Build and Run`
+3) Select a scheme (first run only).
+4) Select a simulator device (first run only).
+5) Watch build progress in the SimBuild output panel; the app installs and launches on completion.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Commands
+- `simbuild.build` — Build the current project.
+- `simbuild.run` — Build and run on a simulator.
+- `simbuild.selectSimulator` — Pick a simulator device.
+- `simbuild.selectScheme` — Pick a scheme.
+- `simbuild.clean` — Clean build artifacts.
 
-For example:
+## Settings
+Configuration keys (set in VS Code settings):
+```json
+{
+  "simbuild.defaultSimulator": "iPhone 15 Pro",
+  "simbuild.derivedDataPath": "./build",
+  "simbuild.showBuildTime": true
+}
+```
 
-This extension contributes the following settings:
+## Development
+- Install deps: `npm install`
+- Compile once: `npm run compile`
+- Watch mode: `npm run watch`
+- Tests: `npm run test`
+- Lint: `npm run lint`
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## Troubleshooting
+- Ensure `xcode-select -p` points to an installed Xcode.
+- Ensure `xcrun simctl list devices available --json` returns devices.
+- If no schemes are found, open the project in Xcode once to generate shared schemes.

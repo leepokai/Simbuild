@@ -2,7 +2,23 @@
   "name": "simbuild",
   "displayName": "SimBuild",
   "description": "One-click build and run for iOS Simulator inside Cursor.",
+  "publisher": "leepokai",
+  "license": "MIT",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leepokai/Simbuild.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leepokai/Simbuild/issues"
+  },
+  "keywords": [
+    "ios",
+    "xcode",
+    "simulator",
+    "build",
+    "vscode-extension"
+  ],
   "engines": {
     "vscode": "^1.107.0"
   },
